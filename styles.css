@@ -34,6 +34,10 @@ body {
   margin-left: 40px;
 }
 
+footer {
+  text-align: center;
+  padding: 20px 0; /* optional: adds some space above and below */
+}
 
 .hero p {
     font-size: 1.2rem;
