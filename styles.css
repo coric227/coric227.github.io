@@ -1,47 +1,44 @@
 /* General Styles */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-    background: #fefefe;
-    color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  background: #fefefe;
+  color: #333;
 }
 
 /* Hero Section */
 .hero {
-    text-align: center;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    padding: 3rem 1rem;
-    color: white;
+  text-align: center;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  padding: 3rem 1rem;
+  color: white;
 }
 
 .profile-pic {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    border: 5px solid white;
-    object-fit: cover;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 5px solid white;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0,0,0,.3);
 }
 
-.hero h1 {
-    margin-top: 1rem;
-    font-size: 2.5rem;
-}
+.hero h1 { margin-top: 1rem; font-size: 2.5rem; }
+.hero p { font-size: 1.2rem; opacity: .9; }
 
-.indented {
-  margin-left: 40px;
-}
+/* Optional: keep "indented" for About only */
+.indented { margin-left: 40px; }
 
-footer {
-  text-align: center;
-  padding: 20px 0; /* optional: adds some space above and below */
-}
+/* Footer */
+footer { text-align: center; padding: 20px 0; }
 
-.hero p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+/* HOBBIES SECTION (centered, responsive width) */
+.hobbies {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 /* GALLERY LAYOUT */
@@ -56,23 +53,16 @@ footer {
 .hobbies .gallery img,
 .hobbies .gallery video {
   width: 100%;
-  aspect-ratio: 1 / 1;        /* perfect square tiles */
-  object-fit: cover;          /* crop to fill the square */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   display: block;
   border-radius: 14px;
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  transition: transform .2s ease; /* put transition on the base state */
 }
 
-/* Optional: subtle hover */
+/* Hover effect */
 .hobbies .gallery img:hover,
 .hobbies .gallery video:hover {
   transform: translateY(-2px);
-  transition: transform .2s ease;
-}
-
-/* Keep the section nicely spaced */
-.hobbies.indented {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 16px;
 }
