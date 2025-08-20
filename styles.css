@@ -43,3 +43,36 @@ footer {
     font-size: 1.2rem;
     opacity: 0.9;
 }
+
+/* GALLERY LAYOUT */
+.hobbies .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+/* Make images & videos look identical */
+.hobbies .gallery img,
+.hobbies .gallery video {
+  width: 100%;
+  aspect-ratio: 1 / 1;        /* perfect square tiles */
+  object-fit: cover;          /* crop to fill the square */
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+/* Optional: subtle hover */
+.hobbies .gallery img:hover,
+.hobbies .gallery video:hover {
+  transform: translateY(-2px);
+  transition: transform .2s ease;
+}
+
+/* Keep the section nicely spaced */
+.hobbies.indented {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
