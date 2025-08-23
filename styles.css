@@ -1,68 +1,385 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* CSS Variables for consistent theming */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-light: #718096;
+  --bg-primary: #f7fafc;
+  --bg-secondary: #ffffff;
+  --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --border-radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* General Styles */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  background: #fefefe;
-  color: #333;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Smooth scrolling and selection */
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--primary-gradient);
+  color: white;
 }
 
 /* Hero Section */
 .hero {
   text-align: center;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  padding: 3rem 1rem;
+  background: var(--primary-gradient);
+  padding: 4rem 1rem;
   color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .profile-pic {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  border: 5px solid white;
+  border: 6px solid rgba(255, 255, 255, 0.3);
   object-fit: cover;
-  box-shadow: 0 4px 20px rgba(0,0,0,.3);
+  box-shadow: var(--shadow-heavy);
+  transition: var(--transition);
+  animation: float 6s ease-in-out infinite;
 }
 
-.hero h1 { margin-top: 1rem; font-size: 2.5rem; }
-.hero p { font-size: 1.2rem; opacity: .9; }
+.profile-pic:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero h1 { 
+  margin-top: 1.5rem; 
+  font-size: 3.5rem; 
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero p { 
+  font-size: 1.3rem; 
+  opacity: 0.95;
+  font-weight: 300;
+  margin-top: 0.5rem;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* About section */
+.about {
+  padding: 4rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--bg-secondary);
+  margin-top: -2rem;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  box-shadow: var(--shadow-medium);
+  position: relative;
+  z-index: 2;
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  background: var(--secondary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
 
 /* Optional: keep "indented" for About only */
 .indented { margin-left: 40px; }
 
 /* Footer */
-footer { text-align: center; padding: 20px 0; }
+footer { 
+  text-align: center; 
+  padding: 2rem 0;
+  background: var(--text-primary);
+  color: white;
+  font-weight: 500;
+}
 
-/* HOBBIES SECTION (centered, responsive width) */
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* HOBBIES SECTION */
 .hobbies {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 3rem 1rem;
+  background: var(--bg-secondary);
+}
+
+.hobbies h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* GALLERY LAYOUT */
 .hobbies .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
-  align-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Media item container */
+.media-item {
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.media-item:nth-child(1) { animation-delay: 0.1s; }
+.media-item:nth-child(2) { animation-delay: 0.2s; }
+.media-item:nth-child(3) { animation-delay: 0.3s; }
+.media-item:nth-child(4) { animation-delay: 0.4s; }
+.media-item:nth-child(5) { animation-delay: 0.5s; }
+.media-item:nth-child(6) { animation-delay: 0.6s; }
+
+.media-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-heavy);
+}
+
+.media-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-gradient);
+  z-index: 1;
 }
 
 /* Make images & videos look identical */
-.hobbies .gallery img,
-.hobbies .gallery video {
+.media-item img,
+.media-item video {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-  transition: transform .2s ease; /* put transition on the base state */
+  transition: var(--transition);
 }
 
-/* Hover effect */
-.hobbies .gallery img:hover,
-.hobbies .gallery video:hover {
-  transform: translateY(-2px);
+.media-item:hover img,
+.media-item:hover video {
+  transform: scale(1.05);
+}
+
+/* Annotation styles */
+.annotation {
+  padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.annotation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  width: 3px;
+  height: 100%;
+  background: var(--accent-gradient);
+  border-radius: 2px;
+}
+
+.annotation p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  /* Hero section mobile adjustments */
+  .hero {
+    padding: 3rem 1rem;
+  }
+  
+  .profile-pic {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+  }
+  
+  /* About section mobile adjustments */
+  .about {
+    padding: 2.5rem 1rem;
+    margin-top: -1rem;
+  }
+  
+  .about h2 {
+    font-size: 2rem;
+  }
+  
+  .about p {
+    font-size: 1.1rem;
+  }
+  
+  /* Remove indentation on mobile */
+  .indented {
+    margin-left: 0;
+  }
+  
+  /* Gallery mobile adjustments */
+  .hobbies {
+    padding: 2rem 1rem;
+  }
+  
+  .hobbies h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .hobbies .gallery {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* Annotation mobile adjustments */
+  .annotation {
+    padding: 1.25rem 1.25rem 1.25rem 2rem;
+  }
+  
+  .annotation p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .hero {
+    padding: 2rem 0.5rem;
+  }
+  
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .about {
+    padding: 2rem 0.5rem;
+  }
+  
+  .hobbies {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .annotation {
+    padding: 1rem 1rem 1rem 1.75rem;
+  }
+}
+
+/* Additional cool effects */
+.media-item {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth loading animation */
+@media (prefers-reduced-motion: no-preference) {
+  .media-item {
+    animation: slideInUp 0.6s ease-out;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
